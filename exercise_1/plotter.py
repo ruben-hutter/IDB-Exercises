@@ -49,7 +49,7 @@ plt.xticks(indices + bar_width/2, months)
 
 # Add labels and title
 plt.xlabel('Month')
-plt.ylabel('Number of Wins')
+plt.ylabel('Number of Wins in millions')
 plt.title('White vs. Black Wins per Month')
 plt.legend()
 
