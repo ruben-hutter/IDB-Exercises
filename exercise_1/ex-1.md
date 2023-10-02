@@ -20,4 +20,4 @@ There are 50,772,456 games in the database.
 
 ---
 
-The link to the official documentation of the `version()` function is: 
+This is the [link](https://www.postgresql.org/docs/16/functions-info.html#FUNCTIONS-INFO-SESSION) to the official documentation of the `version()` function, and it belongs to the *Session Information Functions*.
