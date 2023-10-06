@@ -1,12 +1,9 @@
 ---
-author: Nico Bachmann, Ruben Hutter
+title: 'Exercise sheet 1'
+author:
+- Nico Bachmann
+- Ruben Hutter
 ---
-
-Nico Bachmann
-
-Ruben Hutter
-
-# Exercise sheet 1
 
 ## Task (Practical) 2: Interaction
 
@@ -27,5 +24,7 @@ There are 50,772,456 games in the database.
 *Performance Issues:* While databases are designed to be efficient, they can suffer from performance issues as data volume grows or as more complex operations are needed. This requires regular monitoring, tuning, and sometimes even hardware upgrades, which again can result in increased costs and maintenance efforts.
 
 ---
+
+### Link to official documentation
 
 This is the [link](https://www.postgresql.org/docs/16/functions-info.html#FUNCTIONS-INFO-SESSION) to the official documentation of the `version()` function, and it belongs to the *Session Information Functions*.
