@@ -1,3 +1,11 @@
+---
+author: Nico Bachmann, Ruben Hutter
+---
+
+Nico Bachmann
+
+Ruben Hutter
+
 # Exercise sheet 1
 
 ## Task (Practical) 2: Interaction
