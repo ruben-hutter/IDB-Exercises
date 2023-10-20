@@ -218,7 +218,6 @@ pyrightconfig.json
 *.sig
 
 pkg/
-src/
 
 ### Intellij+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
