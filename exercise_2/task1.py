@@ -11,12 +11,23 @@ conn = psycopg2.connect(
 
 with conn.cursor() as cur:
 
-    # Execute SQL query
+    # First part
     cur.execute("""
         SELECT version()
     """)
 
     print(cur.fetchone())
+
+    # Second part
+
+    cur.execute("""
+        SELECT SUM(game_white_wins::integer) AS white_wins
+        FROM games_simple
+    """)
+
+    rows = cur.fetchall()
+
+    print("Number of white wins:", rows[0][0])
 
 # Close connection
 conn.close()
