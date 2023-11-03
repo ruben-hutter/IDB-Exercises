@@ -53,26 +53,27 @@ Entities:
 \begin{enumerate}[-]
 \item Supplier(\underline{SName})
 \item Company(\underline{CName})
-\item Department(\underline{DName}, \uwave{ENo} Budget)
-\item Head of Department(\underline{\uwave{ENo}}, \uwave{DName}, Bonus) (Vertical partitioning) or Head of Departement(\underline{ENo}, EName, ESalary, Bonus) (Horizontal partitioning)
-\item Employee(\underline{ENo}, EName, ESalary)
+\item Department(\underline{DName}, \uwave{ENo} Budget, \uwave{CName})
+\item HeadOfDepartment(\underline{\uwave{ENo}}, \uwave{DName}, Bonus) (Vertical partitioning) or Head of Departement(\underline{ENo}, EName, ESalary, Bonus) (Horizontal partitioning)
+\item Employee(\underline{ENo}, EName, ESalary, \uwave{DName})
 \end{enumerate}
 
 \noindent
 Relations:
 \begin{enumerate}[-]
-\item has(\underline{SName, CName})
-\item owns(\underline{DName}, \uwave{CName})
+\item has(\underline{\uwave{SName}, \uwave{CName}})
 \item affiliated(\underline{\uwave{PCName}, \uwave{SCName}}, Percentage)
-\item works(\underline{ENo}, \uwave{DName})
-\item leads() is not needed because it has a (1,1) relation to both Entities and can be implemented by using foreign keys in Department and Head of Department.
+\item leads(), owns() and works() "is not needed" after merging their respective relations.
 
 \end{enumerate}
 
 \section*{Exercise \homeworkNumber.3}
 
+\begin{center}
+\includegraphics[width=0.65\textwidth]{sheet_3_ex_3.drawio.png}
+\end{center}
 \begin{enumerate}[-]
-\item Employee(\underline{ENo}, \uwave{OfficeNo, BuildingID}, EName, ESalary, DNAME??)
+\item Employee(\underline{ENo}, \uwave{OfficeNo, BuildingID}, EName, ESalary, \uwave{DName})
 
 \item Building(\underline{BuildingID})
 \item Office(\underline{OfficeNo, \uwave{BuildingID}})
