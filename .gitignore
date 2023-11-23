@@ -199,6 +199,7 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,dbeaver,python
 
 *.sql
+!sheet4_task1.sql
 
 
 
