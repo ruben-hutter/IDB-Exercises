@@ -34,34 +34,37 @@
 %% Page style that uses the header
 \pagestyle{fancy}
 
-\newcommand{\authorname}{Ruben Hutter}
+\newcommand{\authorname}{Nico Bachmann\\Ruben Hutter}
 \newcommand{\semester}{Fall Semester 2023}
-\newcommand{\course}{Informatiklabor}
-\newcommand{\homeworkNumber}{12}
+\newcommand{\course}{Introduction to DB}
+\newcommand{\homeworkNumber}{5}
 
 
 \begin{document}
 
-\section*{Einführung} Dieser Bericht berichtet über die Ergebnisse des Benchmarkings welches wir im Informatiklabor durchgeführt haben. Dabei haben wir ein Programm geschrieben welches ein anderes Programm mehrmals mit unterschiedlichen Parametern ausführt und misst, wie lange das andere Programm braucht.
+\section*{Exercise \homeworkNumber.4}
 
-\section*{Polynome}
-In der zweiten Sektion werden Polynome eingeführt. Ein Polynom ist ein mathematischer Ausdruck, der aus Variablen (oft bezeichnet als $x$) und Koeffizienten besteht, die durch Addition und Subtraktion verbunden sind.
+TODO
 
-Die allgemeine Form eines Polynoms ist gegeben durch:
-\[ P(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1 x + a_0 \]
-wobei $a_n, a_{n-1}, \ldots, a_1, a_0$ die Koeffizienten sind und $n$ den Grad des Polynoms angibt.
+\section*{Exercise \homeworkNumber.5}
 
-Ein Beispiel für ein Polynom dritten Grades ist:
-\[ Q(x) = 2x^3 - 3x^2 + x - 5 \]
+\begin{enumerate}[(1)]
+\item The initial INSERTs fail because we are trying to insert into a view, witch is not automatically updatable because it involves a complex expression, the sinus function.
 
-\section*{Resulate}
-In der dritten Sektion `Resultate` sind die Ergebnisse aus Aufgabe 2. Abbildung~\ref{fig:laufzeitplot} zeigt den Vergleich der Laufzeiten zweier Algorithmen in Abhängigkeit von verschiedenen Parametern.
+\item We could add the following constraint to the table \textit{measurements} in order to limit the possible x values, so that the arcsin(y) can be calculated to obtain x:\\\\
+CREATE TABLE measurements\\
+\dots\\
+CONSTRAINT validSin CHECK(x IS NOT NULL AND 0 <= x AND x <= 2 * pi())
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{scatterplot_with_regression.png}
-    \caption{Vergleich der Laufzeiten für Algorithmus 1 und Algorithmus 2. Die Datenpunkte sind nach dem jeweiligen Algorithmus gruppiert und bieten einen direkten Vergleich der Ausführungszeiten.}
-    \label{fig:laufzeitplot}
-\end{figure}
+\item It depends on the DBMS, but in PostgreSQL, views are generally updatable if they meet certain criteria. However, there are limitations, and not all views are automatically updatable. With the fact we are using the sinus function in the view, we will more likely get an error inserting into the view, but if we would have a view which involves a single table and does not contain constructs like aggregate functions or GROUP BY than we would have the entries in the table as well, since a view is just a virtual representation of the data based on the original table.
+\end{enumerate}
+
+\section*{Exercise \homeworkNumber.6}
+
+\begin{enumerate}[(1)]
+\item \textbf{Graph Database:} A network can be expressed as connected nodes, which is exactly a graph. We probably have to check if two elements are connected and shortest-paths to go from one node to an other. In the case of the railway we would save every station as a node and connect the nodes of the stations connected by rails.
+
+\item \textbf{Column Store:}
+\end{enumerate}
 
 \end{document}
