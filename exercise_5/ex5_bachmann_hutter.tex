@@ -64,7 +64,15 @@ CONSTRAINT validSin CHECK(x IS NOT NULL AND 0 <= x AND x <= 2 * pi())
 \begin{enumerate}[(1)]
 \item \textbf{Graph Database:} A network can be expressed as connected nodes, which is exactly a graph. We probably have to check if two elements are connected and shortest-paths to go from one node to an other. In the case of the railway we would save every station as a node and connect the nodes of the stations connected by rails.
 
-\item \textbf{Column Store:}
+\item \textbf{Column Store:} A bookkeeping system needs to aggregate stored values so basically have fast access to many columns. Let's assume that we have a column \textit{Account Nr.} and a column \textit{Balance CHF}. The entries in classical row stores would store entire tuples on database pages, but if we are only interested in reading the two columns mentioned above, it's better to use a system that stores the columns in physical memory blocks rather than entire tuples.
+
+\item \textbf{Relational Database:} TODO
+
+\item \textbf{Document Store:} TODO
+
+\item \textbf{Key Value Store:} TODO
+
+\item \textbf{Document Store:} TODO
 \end{enumerate}
 
 \end{document}
