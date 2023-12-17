@@ -1,4 +1,3 @@
-
 %% General definitions
 \documentclass{article} %% Determines the general format.
 \usepackage{a4wide} %% paper size: A4.
@@ -20,9 +19,7 @@
 \usepackage{float}
 \usepackage{hyperref}
 
-\usepackage{tikz}  %% Pagacke to create graphics (graphs, automata, etc.)
-\usetikzlibrary{automata} %% Tikz library to draw automata
-\usetikzlibrary{arrows}   %% Tikz library for nicer arrow heads
+\usepackage{listings}
 
 
 %% Left side of header
@@ -44,17 +41,36 @@
 
 \section*{Exercise \homeworkNumber.4}
 
-TODO
+\begin{lstlisting}[language=SQL, tabsize=4]
+CREATE TABLE request(
+	title VARCHAR(255) NOT NULL,
+	applicant VARCHAR(255) NOT NULL,
+	reviewer1 VARCHAR(255) NOT NULL,
+	reviewer2 VARCHAR(255),
+	amount INTEGER NOT NULL,
+	PRIMARY KEY (applicant, title),
+	FOREIGN KEY (applicant, reviewer1, reviewer2)
+	REFERENCES people(id) ON DELETE SET NULL,
+	CONSTRAINT AmountLimit
+	CHECK (amount <= 50000 OR reviewer2 IS NOT NULL),
+	CONSTRAINT ApplNotRev
+	CHECK (applicant <> reviewer1 AND applicant <> reviewer2),
+	CONSTRAINT Rev1NotRev2
+	CHECK (reviewer2 IS NULL OR reviewer2 <> reviewer1)
+);
+\end{lstlisting}
 
 \section*{Exercise \homeworkNumber.5}
 
 \begin{enumerate}[(1)]
 \item The initial INSERTs fail because we are trying to insert into a view, witch is not automatically updatable because it involves a complex expression, the sinus function.
 
-\item We could add the following constraint to the table \textit{measurements} in order to limit the possible x values, so that the arcsin(y) can be calculated to obtain x:\\\\
-CREATE TABLE measurements\\
-\dots\\
-CONSTRAINT validSin CHECK(x IS NOT NULL AND 0 <= x AND x <= 2 * pi())
+\item We could add the following constraint to the table \textit{measurements} in order to limit the possible x values, so that the arcsin(y) can be calculated to obtain x:
+\begin{lstlisting}[language=SQL, tabsize=4]
+CREATE TABLE measurements
+...
+CONSTRAINT validSin CHECK(x IS NOT NULL AND 0 <= x AND x <= 2*pi())
+\end{lstlisting}
 
 \item It depends on the DBMS, but in PostgreSQL, views are generally updatable if they meet certain criteria. However, there are limitations, and not all views are automatically updatable. With the fact we are using the sinus function in the view, we will more likely get an error inserting into the view, but if we would have a view which involves a single table and does not contain constructs like aggregate functions or GROUP BY than we would have the entries in the table as well, since a view is just a virtual representation of the data based on the original table.
 \end{enumerate}
@@ -62,17 +78,17 @@ CONSTRAINT validSin CHECK(x IS NOT NULL AND 0 <= x AND x <= 2 * pi())
 \section*{Exercise \homeworkNumber.6}
 
 \begin{enumerate}[(1)]
-\item \textbf{Graph Database:} A network can be expressed as connected nodes, which is exactly a graph. We probably have to check if two elements are connected and shortest-paths to go from one node to an other. In the case of the railway we would save every station as a node and connect the nodes of the stations connected by rails.
+\item \textbf{Graph Database:} A network can be expressed as connected nodes, which is exactly a graph. We probably have to check if two elements are connected and shortest-paths to go from one node to an other. In the case of the railway we would save every station as a node and connect the nodes of the stations connected by rails with edges.
 
-\item \textbf{Column Store:} A bookkeeping system needs to aggregate stored values so basically have fast access to many columns. Let's assume that we have a column \textit{Account Nr.} and a column \textit{Balance CHF}. The entries in classical row stores would store entire tuples on database pages, but if we are only interested in reading the two columns mentioned above, it's better to use a system that stores the columns in physical memory blocks rather than entire tuples.
+\item \textbf{Column Store:} A bookkeeping system needs to aggregate stored values so basically have fast access to many columns. Column stores are optimized for aggregations and analytics, making them suitable for efficient processing of large volumes of data in a bookkeeping system. We could store financial transactions with columns for different attributes (e.g., date, amount, category) in order to easily get only date and amount columns.
 
-\item \textbf{Relational Database:} TODO
+\item \textbf{Relational Database:} A relational database is appropriate for structured data with well-defined relationships, such as students, exercises, and their corresponding points. We could create tables for Students, Exercises, and Results, with appropriate relationships (foreign keys) linking them, allowing for efficient querying.
 
-\item \textbf{Document Store:} TODO
+\item \textbf{Document Store:} Document databases are well-suited for handling diverse and semi-structured data, making them a good fit for log files with varying content. We could use MongoDB for this, and store the log entries as documents in a collection, where each entry could have the following attributes: timestamp, switchID, message and severity.
 
-\item \textbf{Key Value Store:} TODO
+\item \textbf{Key Value Store:} Key-Value stores are efficient for simple data retrieval and storage, making them suitable for caching where quick access to precomputed results is essential. We could store the results of expensive payloads with unique keys (e.g., the URL or a hash of the request parameters) and use these keys for quick lookups during subsequent requests. Assuming the keys are hashed, the average time complexity would be $\mathcal{O}(1)$ for a lookup.
 
-\item \textbf{Document Store:} TODO
+\item \textbf{Document Store:}  Document databases are well-suited for handling flexible and variable data structures, making them appropriate for storing metadata with varying attributes for different art exhibits. We could store information about each exhibit as a document, allowing for dynamic addition or modification of attributes without affecting the entire collection structure.
 \end{enumerate}
 
 \end{document}
