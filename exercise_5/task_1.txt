@@ -1,0 +1,1 @@
+The problem is that the SQL file is written in PostgreSQL syntax and not SQLite syntax.
