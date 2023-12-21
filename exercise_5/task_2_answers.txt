@@ -1,0 +1,5 @@
+The size of the SQL DB is bigger because we don't save only the raw data, but we
+save also metadata, indexes and internal structures that SQLite uses to manage the
+database.
+
+(1) 
