@@ -2,4 +2,43 @@ The size of the SQL DB is bigger because we don't save only the raw data, but we
 save also metadata, indexes and internal structures that SQLite uses to manage the
 database.
 
-(1) 
+(1)
+sqlite> SELECT strftime('%Y', counts.date) AS year, sum(counts.count) as total_count
+   ...> FROM names
+   ...> JOIN counts ON names.id = counts.id
+   ...> WHERE names.name = 'Hutter'
+   ...> GROUP BY year
+   ...> ORDER BY year;
+
+2011|31
+2012|30
+2013|31
+2014|29
+2015|28
+2016|26
+2017|30
+2018|33
+2019|32
+2020|33
+2021|33
+2022|35
+
+(2)
+sqlite> CREATE VIEW original_csv_view AS
+   ...> SELECT strftime('%Y-%m-%d', counts.date) AS datum, names.name AS nachname, counts.count AS anzahl, strftime('%Y', counts.date) AS jahr
+   ...> FROM names
+   ...> JOIN counts ON names.id = counts.id;
+sqlite> SELECT * FROM original_csv_view;
+
+2021-12-31|Estermann|23|2021
+2019-12-31|Yarasir|7|2019
+2012-12-31|Seifert|21|2012
+2021-12-31|Lorenzini|6|2021
+2015-12-31|Bruderer|23|2015
+2015-12-31|Radina|5|2015
+2011-12-31|Waltenspül|11|2011
+2019-12-31|El Attar|4|2019
+2018-12-31|Holdener|10|2018
+
+(3)
+
