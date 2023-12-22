@@ -23,6 +23,7 @@ sqlite> SELECT strftime('%Y', counts.date) AS year, sum(counts.count) as total_c
 2021|33
 2022|35
 
+
 (2)
 sqlite> CREATE VIEW original_csv_view AS
    ...> SELECT strftime('%Y-%m-%d', counts.date) AS datum, names.name AS nachname, counts.count AS anzahl, strftime('%Y', counts.date) AS jahr
@@ -40,12 +41,14 @@ sqlite> SELECT * FROM original_csv_view;
 2019-12-31|El Attar|4|2019
 2018-12-31|Holdener|10|2018
 
+
 (3)
 sqlite> SELECT counts.count, count(*) AS count_appearances
    ...> FROM counts
    ...> GROUP BY counts.count
-   ...> HAVING count_appearances > 5
+   ...> WHERE count_appearances > 5
    ...> ORDER BY counts.count;
+
 4|36635
 5|21968
 6|14312

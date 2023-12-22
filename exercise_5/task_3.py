@@ -7,8 +7,7 @@ def main():
     
     process_csv_with_pipeline('100127.csv')
 
-    print("\nPlease input a last name:\n")
-    name = input()  
+    name = input("Please input a last name: ")
     for year in range(2011, 2023):
         print(year, name, get_count(name, year))
     conn.close()
