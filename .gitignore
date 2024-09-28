@@ -403,5 +403,6 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij+all,visualstudiocode,windows,archlinuxpackages,linux
 
 *.pdf
-!ex[-]?[0-9]*.pdf
+!ex-[0-9]*.pdf
+!ex[0-9]*.pdf
 !railroad_diagrams.pdf

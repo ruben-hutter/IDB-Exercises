@@ -5,12 +5,13 @@
 The output of `SELECT version();` is:
 
 ```
-PostgreSQL 14.13 (Ubuntu 14.13-0ubuntu0.22.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+PostgreSQL 14.13 (Ubuntu 14.13-0ubuntu0.22.04.1) on x86_64-pc-linux-gnu,
+compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
 ```
 
 ## Task 3
 
-The DB contains chess data.
+The DB contains chess data.\
 
 The query:
 
