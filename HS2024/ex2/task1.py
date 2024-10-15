@@ -7,9 +7,9 @@ password = os.environ.get("DB_PASSWORD")
 # Connect to PostgreSQL
 con = psycopg2.connect(
     dbname="introdb",
-    user="introdb204",
+    user="introdb416",
     password=password,
-    host="dmi-dbis-introdb2.dmi.unibas.ch",
+    host="dmi-dbis-introdb4.dmi.unibas.ch",
     port="5432"
 )
 
